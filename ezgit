@@ -1,0 +1,37 @@
+#!/usr/bin/python
+
+import sys, os
+
+username = "konstfish"
+platform = "https://github.com/"
+#platform = "https://gitlab.com/"
+ignores = ".DS_Store"
+
+if(len(sys.argv) > 1):
+    if(sys.argv[1] == "clone"):
+        if(len(sys.argv) < 4):
+            print("Missing arguments!")
+        elif(len(sys.argv) == 4):
+            os.system("git clone " + platform + sys.argv[2] + "/" + sys.argv[3])
+        elif(len(sys.argv) == 5):
+            os.system("git clone " + platform + sys.argv[2] + "/" + sys.argv[3] + " " + sys.argv[4])
+        else:
+            print("Too many arguments")
+    if(sys.argv[1] == "init"):
+        if(len(sys.argv) < 3):
+            print("Missing arguments!")
+        elif(len(sys.argv) == 3):
+            os.system("echo '# " + sys.argv[2] +"' >> README.md")
+            os.system("echo .DS_Store >> .gitignore")
+            os.system("git init")
+            os.system("git add -A")
+            os.system('git commit -m "first commit"')
+            os.system('git remote add origin ' + platform + username + '/' + sys.argv[2] + '.git')
+            os.system('git push -u origin master')
+        else:
+            print("Too many arguments")
+    if(sys.argv[1] == "push"):
+        os.system('git add -A')
+        inp = str(raw_input("Enter commit title: "))
+        os.system('git commit -m "' + inp + '"')
+        os.system('git push')
