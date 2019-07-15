@@ -1,4 +1,4 @@
 # bin
 
-##other great sources:
+## other great sources:
  - [Color-Scripts](https://github.com/stark/Color-Scripts)
